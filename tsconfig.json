@@ -8,8 +8,15 @@
         "jsx": "react",
         "sourceMap": true,
         "noLib": false,
-        "suppressImplicitAnyIndexErrors": true
+        "suppressImplicitAnyIndexErrors": true,
+        "newLine": "LF"
     },
-    "compileOnSave": false,
-    "exclude": ["node_modules"]
+    "compileOnSave": false,  
+    "include": [  
+        "src/**/*.ts",
+        "src/**/*.tsx"
+    ],  
+    "exclude": [  
+        "node_modules"  
+    ]
 }
