@@ -1,9 +1,17 @@
-import * as React from "react"
+import * as React from 'react';
 
-const classNames = require("./sidebar.css")
+const classNames = require('./sidebar.css');
 
-export const SidebarComponent = () => (
-	<div id="mySidenav" className={classNames.sidenav}>
-		<span> Basic sidebar, first steps</span>
+interface Props {
+	isVisible: boolean;
+}
+
+const divStyle = (props: Props): React.CSSProperties => ({
+	width: props.isVisible ? '23rem' : '0rem',
+});
+
+export const SidebarComponent: React.FunctionComponent<Props> = (props) => (
+	<div id="mySidenav" className={classNames.sidenav} style={divStyle(props)}>
+		{props.children}
 	</div>
-	)
+);

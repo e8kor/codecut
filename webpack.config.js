@@ -45,10 +45,11 @@ module.exports = {
 					{
 						loader: "css-loader",
 						options: {
-							modues: {
-								localIndentName: "[name]__[local]__[hash:base64:5]"
+							modules: {
+                namedExport: true,
+								localIdentName: "[name]__[local]__[hash:base64:5]"
 							},
-							localsConvention: "camelCase"
+							esModule: true
 						}
 					}
 				]

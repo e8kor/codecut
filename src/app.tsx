@@ -4,11 +4,13 @@ import {
 	HelloUser,
 	ColorBrowser,
 	ColorPicker,
-	SidebarComponent
+	SidebarComponent,
+	MemberTableComponent,
 } from './components';
 import { Color } from './model/color';
 
 export const App = () => {
+	const [isVisible, setVisible] = React.useState(false);
 	const [name, setName] = React.useState('defaultUserName');
 	const [editingName, setEditingName] = React.useState('defaultUserName');
 	const [color, setColor] = React.useState<Color>({
@@ -34,7 +36,23 @@ export const App = () => {
 
 	return (
 		<>
-			<SidebarComponent/>
+			<SidebarComponent isVisible={isVisible}>
+				<h1>Cool Scfi movies</h1>
+				<ul>
+					<li>
+						<a href="https://www.imdb.com/title/tt0816692/">Interstellar</a>
+					</li>
+					<li>
+						<a href="https://www.imdb.com/title/tt0083658/">Blade Runner</a>
+					</li>
+					<li>
+						<a href="https://www.imdb.com/title/tt0062622/">
+							2001: a space odyssey
+						</a>
+					</li>
+				</ul>
+			</SidebarComponent>
+			<MemberTableComponent />
 			<ColorBrowser color={color} />
 			<ColorPicker color={color} onColorUpdated={setColor} />
 			<HelloUser userName={name} />
@@ -45,6 +63,9 @@ export const App = () => {
 				onEditingNameUpdated={setEditingName}
 				disabled={editingName === '' || editingName === name}
 			/>
+			<div style={{ float: 'right' }}>
+				<button onClick={() => setVisible(!isVisible)}>Toggle Sidebar</button>
+			</div>
 		</>
 	);
 };

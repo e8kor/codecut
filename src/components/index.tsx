@@ -4,3 +4,4 @@ export * from './named-hello';
 export * from './color-browser';
 export * from './color-picker';
 export * from './sidebar';
+export * from './member-table';
