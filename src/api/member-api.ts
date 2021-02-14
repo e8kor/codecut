@@ -1,16 +1,19 @@
 import {MemberEntity} from '../model/member'
+import Axios, {AxiosResponse} from 'axios'
+
+const gitHubURL = 'https://api.github.com';
+const gitHubMembersUrl = `${gitHubURL}/orgs/lemoncode/members`;
+
+const mapMemberListAPiToModel = (data: any[]): MemberEntity[] => {
+	return data.map(member => ({
+		id: member.id,
+		login: member.login,
+		avatarUrl: member.avatar_url
+	}))
+}
 
 export const getMemberCollection = async () => {
-	let members: MemberEntity[] = [
-		{
-			id: 1457912,
-			login: "brauliodiez",
-			avatarUrl: "https://avatars.githubusercontent.com/u/1457912?v=3"
-		}, {
-			id: 4374977,
-			login: "Nasdan",
-			avatarUrl: "https://avatars.githubusercontent.com/u/4374977?v=3"
-		}
-	]
+	const response = await Axios.get(gitHubMembersUrl)
+	const members = mapMemberListAPiToModel(response.data)
 	return members
 }
